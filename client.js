@@ -15,15 +15,20 @@ $(document).ready(function(){ // waits for DOM to completly load
         '<td>' + idNumber + '</td>' +
         '<td>' + jobTitle + '<td>' +
         '<td>' + annualSalary + '</td>' +
+        '<td><button class="deleteEmployeeButton">Delete</button></td>' +
         '</tr>'
     );
 
   // add monthly salary expenses to the DOM
   var newEmployeeMonthlyExpenses = annualSalary / 12;
-  var previousMonthlyExpenses = $('#monthlyExpenses').text();
-  var totalMonthlyExpenses = parseFloat(previousMonthlyExpenses) + newEmployeeMonthlyExpenses;
+  var previousMonthlyExpenses = $('#monthlyExpenses').text(); //string
+  var totalMonthlyExpenses = parseFloat(previousMonthlyExpenses) + newEmployeeMonthlyExpenses; //number
   $('#monthlyExpenses').text(totalMonthlyExpenses);
   });
 
 
+  $('#employeeTableBody').on('click', '.deleteEmployeeButton', function (){
+    console.log('delete button clicked!');
+    $(this).parent().parent().remove();
+  });
 });
