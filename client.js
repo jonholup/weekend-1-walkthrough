@@ -31,7 +31,15 @@ $(document).ready(function(){ // waits for DOM to completly load
 
   // adding listener for clicking delete employee buttons
   $('#employeeTableBody').on('click', '.deleteEmployeeButton', function (){
-    console.log('delete button clicked!');
-    $(this).parent().parent().remove(); //selecting the row that i want to delete
+    // removing employee salary from totalMonthlyExpenses
+    var deletedEmployeeSalary = $(this).parent().prev().text();
+    var deletedEmployeeMonthlyExpenses = deletedEmployeeSalary / 12;
+    var previousMonthlyExpenses = $('#monthlyExpenses').text();
+    var newTotalMonthlyExpenses = previousMonthlyExpenses - deletedEmployeeMonthlyExpenses;
+    $('#monthlyExpenses').text(newTotalMonthlyExpenses);
+
+    // select and remove the row from table
+    $(this).parent().parent().remove();
+
   });
 });
